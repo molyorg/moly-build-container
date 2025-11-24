@@ -1,0 +1,29 @@
+name: Clone another private repo
+
+on:
+  push:
+    branches:
+      - tools
+
+jobs:
+  clone-build-push-moly-tools:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      - name: Clone your other private repo
+        run: |
+          git clone --branch moly-tools-elixir --single-branch https://x-access-token:${{ secrets.OTHER_REPO_TOKEN }}@github.com/molyorg/toolkit.git
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push Docker image
+        working-directory: toolkit
+        run: |
+          docker build -t yukari/moly:moly-tools-elixir .
+          docker push yukari/moly:moly-tools-elixir
