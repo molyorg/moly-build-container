@@ -3,7 +3,7 @@ name: Clone another private repo
 on:
   push:
     branches:
-      - tools
+      -  moly-tools-elixir
 
 jobs:
   clone-build-push-moly-tools:
