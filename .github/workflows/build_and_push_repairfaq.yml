@@ -1,7 +1,5 @@
 name: Clone another private repo
 
-
-
 on:
   push:
     branches:
