@@ -5,6 +5,7 @@ on:
     branches:
       - repairfaq
 
+
 jobs:
   clone-build-push-moly-graphql-api:
     runs-on: ubuntu-24.04-arm
