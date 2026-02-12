@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  clone-build-push-moly-graphql-api:
+  clone-build-push-satellites:
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout this repo
@@ -15,7 +15,7 @@ jobs:
 
       - name: Clone your other private repo
         run: |
-          git clone --branch main --single-branch https://x-access-token:${{ secrets.OTHER_REPO_TOKEN }}@github.com:yukari09/satellites.git
+          git clone --branch main --single-branch https://x-access-token:${{ secrets.OTHER_REPO_TOKEN }}@github.com/yukari09/satellites.git
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
