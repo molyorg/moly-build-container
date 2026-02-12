@@ -12,7 +12,6 @@ jobs:
       - name: Checkout this repo
         uses: actions/checkout@v4
 
-      # 优化1：使用 actions/checkout 克隆私有仓库，更安全且支持自动清理
       - name: Clone private repo
         uses: actions/checkout@v4
         with:
@@ -21,7 +20,6 @@ jobs:
           path: satellites
           ref: main
 
-      # 优化2：设置 Docker Buildx（用于更好的构建性能和缓存）
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -31,8 +29,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # 优化3：使用官方 Action 构建和推送
-      # 这会自动处理缓存，并减少手动写命令的出错率
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
